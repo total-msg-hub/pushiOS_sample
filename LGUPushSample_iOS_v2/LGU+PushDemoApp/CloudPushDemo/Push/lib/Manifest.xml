@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<manifest>
+    <settings>
+        <push>
+            <storage>y</storage>
+            <receiver>
+                <version>5.0</version>
+                <server>https://upmc.msghub.uplus.co.kr/upmc/</server>
+                <policy>user</policy>
+                <log>y</log>
+                <app-id>LGU-SAMPLEAPP-00001</app-id>
+            </receiver>
+        </push>
+    </settings>
+</manifest>
+
