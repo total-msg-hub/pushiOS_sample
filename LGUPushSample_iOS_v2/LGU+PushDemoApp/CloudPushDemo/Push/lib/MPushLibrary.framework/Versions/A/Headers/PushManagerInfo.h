@@ -58,6 +58,7 @@
 - (void)changeProjectID:(NSString *)projectID;
 - (void)changeGranted:(BOOL)useGranted;
 - (void)changeLog:(BOOL)useLog;
+- (void)changeDeviceUUID:(NSString *)deviceUUID;
 
 - (NSDictionary *)jsonObject;
 

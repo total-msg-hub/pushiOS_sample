@@ -79,6 +79,9 @@ typedef void (^PushManagerInterfaceCompletionHandlerWithError) (BOOL success, NS
 
 + (PushManager *)defaultManager;
 
++ (void)setBundlePath:(NSString *)path;
++ (NSString *)getBundlePath;
+
 - (void)initialize;
 - (void)initilaizeWithDelegate:(id<PushManagerDelegate>)delegate;
 
@@ -86,46 +89,49 @@ typedef void (^PushManagerInterfaceCompletionHandlerWithError) (BOOL success, NS
 
 // - (void)securityIndexes:(NSString *)securityIndexes; // Deprecated since PushLibrary 4.2.1, Manifest.xml 에서 security-indexes 값 정의하여 적용
 
-- (void)registerService:(UIViewController *)activity completionHandler:(PushManagerInterfaceCompletionHandler)handler;
-- (void)registerService:(UIViewController *)activity token:(NSString *)token completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)registerService:(nullable id)activity completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)registerService:(nullable id)activity token:(NSString *)token completionHandler:(PushManagerInterfaceCompletionHandler)handler;
 
-- (void)unregisterService:(UIViewController *)activity completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)unregisterService:(nullable id)activity completionHandler:(PushManagerInterfaceCompletionHandler)handler;
 
-- (void)registerUser:(UIViewController *)activity clientUID:(NSString *)clientUID clientName:(NSString *)clientName completionHandler:(PushManagerInterfaceCompletionHandler)handler;
-- (void)registerUser:(UIViewController *)activity clientUID:(NSString *)clientUID clientName:(NSString *)clientName phoneNumber:(NSString *)phoneNumber completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)registerUser:(nullable id)activity clientUID:(NSString *)clientUID clientName:(NSString *)clientName completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)registerUser:(nullable id)activity clientUID:(NSString *)clientUID clientName:(NSString *)clientName phoneNumber:(NSString *)phoneNumber completionHandler:(PushManagerInterfaceCompletionHandler)handler;
 
-- (void)unregisterUser:(UIViewController *)activity completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)unregisterUser:(nullable id)activity completionHandler:(PushManagerInterfaceCompletionHandler)handler;
 
-- (void)registerServiceAndUser:(UIViewController *)activity clientUID:(NSString *)clientUID clientName:(NSString *)clientName completionHandler:(PushManagerInterfaceCompletionHandler)handler;
-- (void)registerServiceAndUser:(UIViewController *)activity clientUID:(NSString *)clientUID clientName:(NSString *)clientName phoneNumber:(NSString *)phoneNumber completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)registerServiceAndUser:(nullable id)activity clientUID:(NSString *)clientUID clientName:(NSString *)clientName completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)registerServiceAndUser:(nullable id)activity clientUID:(NSString *)clientUID clientName:(NSString *)clientName completionHandlerWithBody:(PushManagerInterfaceCompletionHandlerWithBody)handler;
+- (void)registerServiceAndUser:(nullable id)activity clientUID:(NSString *)clientUID clientName:(NSString *)clientName phoneNumber:(NSString *)phoneNumber completionHandler:(PushManagerInterfaceCompletionHandler)handler;
 
-- (void)registerGroup:(UIViewController *)activity groupSequenceNumber:(NSString *)groupSequenceNumber completionHandler:(PushManagerInterfaceCompletionHandler)handler;
-- (void)unregisterGroup:(UIViewController *)activity groupSequenceNumber:(NSString *)groupSequenceNumber completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)getRegisteredService:(nullable id)activity completionHandler:(PushManagerInterfaceCompletionHandlerWithError)handler;
 
-- (void)read:(UIViewController *)activity messageUniqueKey:(NSString *)messageUniqueKey seqNo:(NSString *)seqNo completionHandler:(PushManagerInterfaceCompletionHandler)handler; // Deprecated in 3.6
-- (void)read:(UIViewController *)activity notification:(NSDictionary *)notification completionHandler:(PushManagerInterfaceCompletionHandler)handler;
-- (void)read:(UIViewController *)activity notification:(NSDictionary *)notification badgeOption:(PushManagerBadgeOption)badgeOption completionHandler:(PushManagerInterfaceCompletionHandler)handler; // Available since 4.0
-- (void)read:(UIViewController *)activity notification:(NSDictionary *)notification badgeOption:(PushManagerBadgeOption)badgeOption badge:(NSNumber *)badge completionHandler:(PushManagerInterfaceCompletionHandler)handler; // Available since 4.0
-- (void)update:(UIViewController *)activity badge:(NSNumber *)badge completionHandler:(PushManagerInterfaceCompletionHandler)handler; // Available since 4.0
+- (void)registerGroup:(nullable id)activity groupSequenceNumber:(NSString *)groupSequenceNumber completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)unregisterGroup:(nullable id)activity groupSequenceNumber:(NSString *)groupSequenceNumber completionHandler:(PushManagerInterfaceCompletionHandler)handler;
 
-- (void)feedback:(UIViewController *)activity messageUniqueKey:(NSString *)messageUniqueKey seqNo:(NSString *)seqNo completionHandler:(PushManagerInterfaceCompletionHandler)handler; // Deprecated in 3.6
-- (void)feedback:(UIViewController *)activity notification:(NSDictionary *)notification completionHandler:(PushManagerInterfaceCompletionHandler)handler;
-- (void)send:(UIViewController *)activity clientUID:(NSString *)clientUID
+- (void)read:(nullable id)activity messageUniqueKey:(NSString *)messageUniqueKey seqNo:(NSString *)seqNo completionHandler:(PushManagerInterfaceCompletionHandler)handler; // Deprecated in 3.6
+- (void)read:(nullable id)activity notification:(NSDictionary *)notification completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)read:(nullable id)activity notification:(NSDictionary *)notification badgeOption:(PushManagerBadgeOption)badgeOption completionHandler:(PushManagerInterfaceCompletionHandler)handler; // Available since 4.0
+- (void)read:(nullable id)activity notification:(NSDictionary *)notification badgeOption:(PushManagerBadgeOption)badgeOption badge:(NSNumber *)badge completionHandler:(PushManagerInterfaceCompletionHandler)handler; // Available since 4.0
+- (void)update:(nullable id)activity badge:(NSNumber *)badge completionHandler:(PushManagerInterfaceCompletionHandler)handler; // Available since 4.0
+
+- (void)feedback:(nullable id)activity messageUniqueKey:(NSString *)messageUniqueKey seqNo:(NSString *)seqNo completionHandler:(PushManagerInterfaceCompletionHandler)handler; // Deprecated in 3.6
+- (void)feedback:(nullable id)activity notification:(NSDictionary *)notification completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)send:(nullable id)activity clientUID:(NSString *)clientUID
 	message:(NSString *)message badgeNo:(NSNumber *)badgeNo serviceCode:(NSString *)serviceCode ext:(NSString *)ext completionHandler:(PushManagerInterfaceCompletionHandler)handler; // Available since 4.0
-- (void)send:(UIViewController *)activity clientUID:(NSString *)clientUID
+- (void)send:(nullable id)activity clientUID:(NSString *)clientUID
 	message:(NSString *)message serviceCode:(NSString *)serviceCode ext:(NSString *)ext completionHandler:(PushManagerInterfaceCompletionHandler)handler; // Available since 3.6
-- (void)send:(UIViewController *)activity message:(NSString *)message serviceCode:(NSString *)serviceCode ext:(NSString *)ext completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)send:(nullable id)activity message:(NSString *)message serviceCode:(NSString *)serviceCode ext:(NSString *)ext completionHandler:(PushManagerInterfaceCompletionHandler)handler;
 
-- (void)send:(UIViewController *)activity clientUID:(NSString *)clientUID
+- (void)send:(nullable id)activity clientUID:(NSString *)clientUID
      message:(NSString *)message serviceCode:(NSString *)serviceCode reserveDate:(NSString *)reserveDate ext:(NSString *)ext completionHandler:(PushManagerInterfaceCompletionHandlerWithBody)handler; // 예약발송
-- (void)feedback:(UIViewController *)activity notification:(NSDictionary *)notification clientUID:(NSString *)clientUID psID:(NSString *)psID completionHandler:(PushManagerInterfaceCompletionHandler)handler;
+- (void)feedback:(nullable id)activity notification:(NSDictionary *)notification clientUID:(NSString *)clientUID psID:(NSString *)psID completionHandler:(PushManagerInterfaceCompletionHandler)handler;
 - (void)feedbackEx:(NSDictionary *)notification clientUID:(NSString *)clientUID psID:(NSString *)psID completionHandler:(PushManagerInterfaceCompletionHandler)handler;
 
-- (void)updateSession:(UIViewController *)activity cuid:(NSString *)cuid completionHandler:(PushManagerInterfaceCompletionHandlerWithBody)handler;
-- (void)updateSession:(UIViewController *)activity option:(NSDictionary *)option completionHandler:(PushManagerInterfaceCompletionHandlerWithBody)handler;
+- (void)updateSession:(nullable id)activity cuid:(NSString *)cuid completionHandler:(PushManagerInterfaceCompletionHandlerWithBody)handler;
+- (void)updateSession:(nullable id)activity option:(NSDictionary *)option completionHandler:(PushManagerInterfaceCompletionHandlerWithBody)handler;
 
-- (void)updatePurchase:(UIViewController *)activity id:(NSString *)id cuid:(NSString *)cuid completionHandler:(PushManagerInterfaceCompletionHandlerWithBody)handler;
-- (void)updatePurchase:(UIViewController *)activity option:(NSDictionary *)option completionHandler:(PushManagerInterfaceCompletionHandlerWithBody)handler;
+- (void)updatePurchase:(nullable id)activity id:(NSString *)id cuid:(NSString *)cuid completionHandler:(PushManagerInterfaceCompletionHandlerWithBody)handler;
+- (void)updatePurchase:(nullable id)activity option:(NSDictionary *)option completionHandler:(PushManagerInterfaceCompletionHandlerWithBody)handler;
 
 - (void)setManifestFile:(NSString *)fileName;
 - (void)removeManifestFile;
